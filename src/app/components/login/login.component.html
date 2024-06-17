@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="login-box">
+    <div class="left">
+      <img class="logo" src="https://cdn-icons-png.flaticon.com/512/1648/1648294.png" alt="Centro Intecap" />
+    </div>
+    <div class="right">
+      <div class="imge">
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Logotipo_de_el_INTECAP.png"
+          alt="Logo Intecap" width="150px" />
+        <h2>Iniciar Sesion</h2>
+      </div>
+      <form [formGroup]="FormGroup">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Ingresa tu correo</mat-label>
+          <input matInput placeholder="usuario@ejemplo.com" formControlName="emailCtrl" required id="user" name="user">
+          <span matTextPrefix><mat-icon>email</mat-icon>&nbsp;</span>
+
+          <mat-error *ngIf="this.FormGroup.controls.emailCtrl.invalid">{{getErrorMessageEmail()}}</mat-error>
+
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Ingresa tu contraseña</mat-label>
+          <input matInput (keypress)="loginKeyPress($event)" [type]="hide ? 'password' : 'text'"
+            formControlName="passwordCtrl" required id="password" name="password">
+          <span matTextPrefix><mat-icon>lock</mat-icon>&nbsp;</span>
+
+          <mat-error *ngIf="this.FormGroup.controls.passwordCtrl.invalid">{{getErrorMessagePassword()}}</mat-error>
+
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="init">
+          <button mat-raised-button (click)="send()"><mat-icon>home</mat-icon>Ingresar</button>
+        </div>
+        <div>
+          <button mat-button><span matTextPrefix><mat-icon>psychology_alt</mat-icon>&nbsp;</span>Olvide mi
+            contraseña</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

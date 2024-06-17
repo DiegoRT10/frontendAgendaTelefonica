@@ -1,0 +1,51 @@
+  <br>
+  <form class="example-form" [formGroup]="firstFormGroup">
+    <mat-form-field class="form-width">
+      <mat-label>Buscar Contacto</mat-label>
+      <input matInput placeholder="Nombre o Apellido" formControlName="searchCtrl">
+    </mat-form-field>
+  </form>
+
+  <div class="acordion-width ">
+    <mat-accordion>
+        @for (user of listUserFiltrada.length > 0 ? listUserFiltrada : listUser; track $index) {
+            <mat-expansion-panel (click)="Contacto(user.id)">
+                <mat-expansion-panel-header>
+                  
+                  <mat-panel-description>
+                    {{user.nombre+" "}}{{user.apellido}}
+                    <mat-icon>assignment_ind</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+      <button mat-fab color="primary" (click)="editar(user.id)"><mat-icon>edit</mat-icon></button>
+         
+                <h2>Contacto</h2>
+                @for (contacto of listContacto; track $index) {
+                    <table>
+                        <tr>
+                          <th>Numero</th>
+                          <td>{{contacto.numero}}</td>
+                        </tr>
+                        <tr>
+                          <th>Correo</th>
+                          <td>{{contacto.email}}</td>
+                        </tr>
+                        <tr>
+                          <th>Direccion</th>
+                          <td>{{contacto.direccion}} </td>
+                        </tr>
+                      </table>
+                      <br>
+                }
+                  
+    
+              </mat-expansion-panel>
+        }
+        
+      </mat-accordion>
+      
+  </div>
+  
+
+  
+  

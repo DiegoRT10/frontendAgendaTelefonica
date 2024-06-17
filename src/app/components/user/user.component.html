@@ -1,0 +1,129 @@
+<mat-tab-group>
+    <mat-tab label="Informacion de usuario">
+        <br>
+        @if (!UsuarioEditar) {
+            <div class="example-form">
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{objUsuario.nombre}}</td>
+                    </tr>
+                    <tr>
+                        <th>Appellido</th>
+                        <td>{{objUsuario.apellido}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{objUsuario.email}} </td>
+                    </tr>
+                    <tr>
+                        <td><button mat-fab color="primary"
+                                (click)="editarUsuario()"><mat-icon>edit</mat-icon></button></td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            }
+
+            @if (UsuarioEditar) {
+        <div class="example-form">
+            <form [formGroup]="usuarioFormGroup">
+                <mat-form-field class="form-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="Nombre" formControlName="nombreCtrl">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput placeholder="Apellido" formControlName="apellidoCtrl">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="emailCtrl">
+                </mat-form-field>
+                <button mat-fab color="warn" (click)="BackUsuario()"><mat-icon>arrow_back</mat-icon></button>
+                &nbsp;
+                <button mat-fab color="accent" (click)="saveUsuario()"><mat-icon>done</mat-icon></button>
+            </form>
+        </div>
+    }
+    </mat-tab>
+    <mat-tab label="Informacion de contacto">
+        <br>
+        <button mat-fab color="warn" (click)="BackContacto()"><mat-icon>add</mat-icon></button>
+        @if(ContactoAgregar){
+            <div class="example-form">
+                <form [formGroup]="contactoFormGroup">
+                    <mat-form-field class="form-width">
+                        <mat-label>Numero</mat-label>
+                        <input matInput placeholder="Nombre" formControlName="numeroCtrl">
+                    </mat-form-field>
+                    <mat-form-field class="form-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Apellido" formControlName="emailCtrl">
+                    </mat-form-field>
+                    <mat-form-field class="form-width">
+                        <mat-label>direccion</mat-label>
+                        <input matInput placeholder="Email" formControlName="direccionCtrl">
+                    </mat-form-field>
+                    <button mat-fab color="warn" (click)="BackContacto()"><mat-icon>arrow_back</mat-icon></button>
+                    &nbsp;
+                    <button mat-fab color="accent" (click)="saveContacto()"><mat-icon>done</mat-icon></button>
+                    <br>
+                </form>
+            </div>
+        } @else {
+            @if (!ContactoEditar) {
+                @for (contacto of listContacto; track $index) {
+                <div class="example-form">
+                    <table>
+                        <tr>
+                            <th>Numero</th>
+                            <td>{{contacto.numero}}</td>
+                        </tr>
+                        <tr>
+                            <th>Correo</th>
+                            <td>{{contacto.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Direccion</th>
+                            <td>{{contacto.direccion}} </td>
+                        </tr>
+                        <tr>
+                            <td><button mat-fab color="primary"
+                                    (click)="editarContacto(contacto)"><mat-icon>edit</mat-icon></button></td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+                }
+                }
+        
+                @if (ContactoEditar) {
+                <div class="example-form">
+                    <form [formGroup]="contactoFormGroup">
+                        <mat-form-field class="form-width">
+                            <mat-label>Numero</mat-label>
+                            <input matInput placeholder="Nombre" formControlName="numeroCtrl">
+                        </mat-form-field>
+                        <mat-form-field class="form-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Apellido" formControlName="emailCtrl">
+                        </mat-form-field>
+                        <mat-form-field class="form-width">
+                            <mat-label>direccion</mat-label>
+                            <input matInput placeholder="Email" formControlName="direccionCtrl">
+                        </mat-form-field>
+                        <button mat-fab color="warn" (click)="BackContacto()"><mat-icon>arrow_back</mat-icon></button>
+                        &nbsp;
+                        <button mat-fab color="accent" (click)="saveContacto()"><mat-icon>done</mat-icon></button>
+                        <br>
+                    </form>
+                </div>
+                }
+        }
+        
+
+    </mat-tab>
+    <mat-tab label="Informacion de profesion"> Content 3 </mat-tab>
+    <mat-tab label="Informacion de servicio"> Content 3 </mat-tab>
+</mat-tab-group>
